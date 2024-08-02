@@ -10,7 +10,7 @@ const execPromise = util.promisify(exec);
 // Define paths
 const TEMP_DIR = '/tmp';
 const app = express();
-app.use(cors()); // Enable CORS
+app.use(cors('http://localhost:3000')); // Enable CORS
 app.use(express.json());
 module.exports = async (req, res) => {
   if (req.method === 'POST') {
