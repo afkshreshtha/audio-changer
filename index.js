@@ -3,12 +3,15 @@ const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
 const util = require('util');
-
+const cors = require('cors');
+const express = require('express');
 const execPromise = util.promisify(exec);
 
 // Define paths
 const TEMP_DIR = '/tmp';
-
+const app = express();
+app.use(cors()); // Enable CORS
+app.use(express.json());
 module.exports = async (req, res) => {
   if (req.method === 'POST') {
     const form = new IncomingForm();
