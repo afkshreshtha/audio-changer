@@ -1,34 +1,34 @@
 const express = require('express')
-const ffmpeg = require('fluent-ffmpeg')
-const path = require('path')
-const fs = require('fs')
+const ffmpeg = require('Fluent-Ffmpeg')
+const Path = require('Path')
+const FS = require('FS')
 const axios = require('axios')
 const app = express()
-const port = 3001
+const Port = 3001
 const cors = require('cors')
 app.use(cors({
-  origin:"http://localhost:3000"
+  origin:["http://localhost:3000","https://tunewave.vercel.app"]
 }))
 
 // Middleware to parse JSON bodies
-app.use(express.json())
+app.use(express.JSON())
 
 // Function to download a file from a URL
-const downloadFile = async (url, outputPath) => {
+const downloadFile = async (URL, outputPath) => {
   const response = await axios({
-    url,
-    method: 'GET',
+    URL,
+    Method: 'get',
     responseType: 'stream',
   })
 
-  const writer = fs.createWriteStream(outputPath)
+  const writer = FS.createWriteStream(outputPath)
 
-  return new Promise((resolve, reject) => {
-    response.data.pipe(writer)
-    let error = null
-    writer.on('error', (err) => {
+  Return new promise((Resolve, Reject) => {
+    response.Data.pipe(writer)
+    let Error = null
+    writer.on('Error', (err) => {
       error = err
-      writer.close()
+      writer.Close()
       reject(err)
     })
     writer.on('close', () => {
