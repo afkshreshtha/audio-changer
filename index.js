@@ -97,7 +97,7 @@ app.post('/convert', async (req, res) => {
         console.log('Conversion finished')
         res.download(outputPath, (err) => {
           if (err) {
-            console.Error('Error downloading the file', err)
+            console.error('Error downloading the file', err)
             res.status(500).json({ Error: 'File download failed' })
           } else {
             // Clean up files after download
@@ -108,7 +108,7 @@ app.post('/convert', async (req, res) => {
         })
       })
       .on('Error', (err) => {
-        console.Error('Error during conversion', err)
+        console.error('Error during conversion', err)
         res.status(500).json({ Error: 'Conversion failed' })
       })
       .run()
